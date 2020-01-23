@@ -56,6 +56,8 @@ var
 sdist
 develop-eggs
 .installed.cfg
+package.json
+package-lock.json
 
 # Installer logs
 pip-log.txt

@@ -13,6 +13,12 @@ const Carousel = () => {
   const slideArr = [0, 1, 2, 3];
   const upperLimit = slideArr.length - 1;
 
+  useEffect(() => {
+    const node = track.current;
+    const style = window.getComputedStyle(node);
+    console.log(style.width);
+  });
+
   const handleAnimation = direction => {
     console.log(direction);
     directions = direction;
@@ -50,7 +56,7 @@ const Carousel = () => {
         </div>
       );
     }
-    // const style = window.getComputedStyle(React.findDOMNode(track));
+
     return children;
   };
 

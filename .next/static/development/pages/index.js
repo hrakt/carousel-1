@@ -43,6 +43,11 @@ var Carousel = function Carousel() {
   var track = react__WEBPACK_IMPORTED_MODULE_2___default.a.createRef();
   var slideArr = [0, 1, 2, 3];
   var upperLimit = slideArr.length - 1;
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+    var node = track.current;
+    var style = window.getComputedStyle(node);
+    console.log(style.width);
+  });
 
   var handleAnimation = function handleAnimation(direction) {
     console.log(direction);
@@ -82,12 +87,11 @@ var Carousel = function Carousel() {
         className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.box,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 54
         },
         __self: this
       }, slideArr[i]));
-    } // const style = window.getComputedStyle(React.findDOMNode(track));
-
+    }
 
     return children;
   };
@@ -97,26 +101,26 @@ var Carousel = function Carousel() {
     className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.mainContainer,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 68
     },
     __self: this
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 69
     },
     __self: this
   }, "CurrentSlide:", currentSlide), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 70
     },
     __self: this
   }, "direction:", direction), __jsx("div", {
     className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.bigContainer,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 71
     },
     __self: this
   }, __jsx("div", {
@@ -128,35 +132,35 @@ var Carousel = function Carousel() {
     onTransitionEnd: resetSlide,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 72
     },
     __self: this
   }, cloneSlides(), __jsx("div", {
     className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.box,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 79
     },
     __self: this
   }, slideArr[0]), __jsx("div", {
     className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.box,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 80
     },
     __self: this
   }, " ", slideArr[1], " "), __jsx("div", {
     className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.box,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 81
     },
     __self: this
   }, slideArr[2]), __jsx("div", {
     className: _Carousel_module_scss__WEBPACK_IMPORTED_MODULE_3___default.a.box,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 82
     },
     __self: this
   }, slideArr[3]), cloneSlides())), __jsx(_Slider__WEBPACK_IMPORTED_MODULE_4__["default"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
@@ -167,7 +171,7 @@ var Carousel = function Carousel() {
   }, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 86
     },
     __self: this
   })));
