@@ -7,16 +7,19 @@ const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(null);
   const [shifting, setShifting] = useState(false);
+  const [slideLength, setSlideLength] = useState(null);
 
   const track = React.createRef();
 
-  const slideArr = [0, 1, 2, 3];
+  const slideArr = [0, 1, 2, 3, 4];
   const upperLimit = slideArr.length - 1;
 
   useEffect(() => {
     const node = track.current;
     const style = window.getComputedStyle(node);
-    console.log(style.width);
+    const childrenCount = node.children.length;
+    const trackLength = Number(style.width.replace("px", ""));
+    setSlideLength(trackLength / childrenCount);
   });
 
   const handleAnimation = direction => {
@@ -41,7 +44,7 @@ const Carousel = () => {
       setShifting(false);
       setCurrentSlide(0);
     }
-    if (currentSlide === 0) {
+    if (currentSlide === -upperLimit - 1) {
       setShifting(false);
       setCurrentSlide(0);
     }
@@ -71,15 +74,18 @@ const Carousel = () => {
       <div className={styles.bigContainer}>
         <div
           className={className}
-          style={{ transform: `translateX(${(currentSlide + 4) * -152}px)` }}
+          style={{ transform: `translateX(${(currentSlide + upperLimit + 1) * -slideLength}px)` }}
           ref={track}
           onTransitionEnd={resetSlide}
         >
           {cloneSlides()}
-          <div className={styles.box}>{slideArr[0]}</div>
-          <div className={styles.box}> {slideArr[1]} </div>
-          <div className={styles.box}>{slideArr[2]}</div>
-          <div className={styles.box}>{slideArr[3]}</div>
+          {slideArr.map((item, index) => {
+            return (
+              <div key={index} className={styles.box}>
+                {item}
+              </div>
+            );
+          })}
           {cloneSlides()}
         </div>
       </div>

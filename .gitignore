@@ -79,7 +79,7 @@ pip-log.txt
 local_settings.py
 
 # NPM
-node_modules
+
 
 *.db
 collected-static/*
