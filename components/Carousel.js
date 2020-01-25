@@ -8,10 +8,11 @@ const Carousel = () => {
   const [direction, setDirection] = useState(null);
   const [shifting, setShifting] = useState(false);
   const [slideLength, setSlideLength] = useState(null);
+  const [clickGuard, setClickGuard] = useState(false);
 
   const track = React.createRef();
 
-  const slideArr = [0, 1, 2, 3, 4];
+  const slideArr = [0, 1, 2, 3, 4, 5];
   const upperLimit = slideArr.length - 1;
 
   useEffect(() => {
@@ -22,12 +23,30 @@ const Carousel = () => {
     setSlideLength(trackLength / childrenCount);
   });
 
+  useEffect(() => {
+    document.addEventListener("keydown", handleArrows, false);
+
+    return () => {
+      document.removeEventListener("keydown", handleArrows, false);
+    };
+  });
+
   const handleAnimation = direction => {
     console.log(direction);
     directions = direction;
   };
 
+  const handleArrows = event => {
+    if (event.keyCode === 39) {
+      handleClick(1);
+    } else if (event.keyCode === 37) {
+      handleClick(-1);
+    }
+    console.log(event.keyCode);
+  };
+
   const handleClick = direction => {
+    // if (clickGuard === true) {
     cloneSlides();
     let newSlideNumber = currentSlide + direction;
     direction = direction;
@@ -35,6 +54,8 @@ const Carousel = () => {
 
     setCurrentSlide(newSlideNumber);
     setDirection(direction);
+    setClickGuard(false);
+    // }
   };
 
   const resetSlide = () => {
@@ -89,7 +110,7 @@ const Carousel = () => {
           {cloneSlides()}
         </div>
       </div>
-      <Slider {...{ setCurrentSlide, currentSlide, handleAnimation, handleClick }} />
+      <Slider {...{ setCurrentSlide, currentSlide, handleAnimation, handleClick, clickGuard, setClickGuard }} />
     </div>
   );
 };
