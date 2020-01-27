@@ -8,7 +8,7 @@ const Carousel = () => {
   const [direction, setDirection] = useState(null);
   const [shifting, setShifting] = useState(false);
   const [slideLength, setSlideLength] = useState(null);
-  const [clickGuard, setClickGuard] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const track = React.createRef();
 
@@ -47,6 +47,7 @@ const Carousel = () => {
 
   const handleClick = direction => {
     // if (clickGuard === true) {
+    setIsAnimating(true);
     cloneSlides();
     let newSlideNumber = currentSlide + direction;
     direction = direction;
@@ -54,13 +55,14 @@ const Carousel = () => {
 
     setCurrentSlide(newSlideNumber);
     setDirection(direction);
-    setClickGuard(false);
+
     // }
   };
 
   const resetSlide = () => {
     console.log(currentSlide, "currentslide");
     console.log(upperLimit, "upperLimit");
+    setIsAnimating(false);
     if (currentSlide === upperLimit + 1) {
       setShifting(false);
       setCurrentSlide(0);
@@ -110,7 +112,7 @@ const Carousel = () => {
           {cloneSlides()}
         </div>
       </div>
-      <Slider {...{ setCurrentSlide, currentSlide, handleAnimation, handleClick, clickGuard, setClickGuard }} />
+      <Slider {...{ setCurrentSlide, currentSlide, handleAnimation, handleClick, isAnimating, setIsAnimating }} />
     </div>
   );
 };
