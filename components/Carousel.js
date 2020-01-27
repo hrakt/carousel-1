@@ -37,16 +37,16 @@ const Carousel = () => {
   };
 
   const handleArrows = event => {
-    if (event.keyCode === 39) {
-      handleClick(1);
-    } else if (event.keyCode === 37) {
-      handleClick(-1);
+    if (!isAnimating) {
+      if (event.keyCode === 39) {
+        handleClick(1);
+      } else if (event.keyCode === 37) {
+        handleClick(-1);
+      }
     }
-    console.log(event.keyCode);
   };
 
   const handleClick = direction => {
-    // if (clickGuard === true) {
     setIsAnimating(true);
     cloneSlides();
     let newSlideNumber = currentSlide + direction;
@@ -55,8 +55,6 @@ const Carousel = () => {
 
     setCurrentSlide(newSlideNumber);
     setDirection(direction);
-
-    // }
   };
 
   const resetSlide = () => {
@@ -92,27 +90,32 @@ const Carousel = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <div>CurrentSlide:{currentSlide}</div>
-      <div>direction:{direction}</div>
-      <div className={styles.bigContainer}>
-        <div
-          className={className}
-          style={{ transform: `translateX(${(currentSlide + upperLimit + 1) * -slideLength}px)` }}
-          ref={track}
-          onTransitionEnd={resetSlide}
-        >
-          {cloneSlides()}
-          {slideArr.map((item, index) => {
-            return (
-              <div key={index} className={styles.box}>
-                {item}
-              </div>
-            );
-          })}
-          {cloneSlides()}
-        </div>
+      <div>
+        <div>CurrentSlide:{currentSlide}</div>
+        <div>direction:{direction}</div>
       </div>
-      <Slider {...{ setCurrentSlide, currentSlide, handleAnimation, handleClick, isAnimating, setIsAnimating }} />
+      <div className={styles.bottomContainer}>
+        <Slider {...{ handleClick, isAnimating }} previous />
+        <div className={styles.bigContainer}>
+          <div
+            className={className}
+            style={{ transform: `translateX(${(currentSlide + upperLimit + 1) * -slideLength}px)` }}
+            ref={track}
+            onTransitionEnd={resetSlide}
+          >
+            {cloneSlides()}
+            {slideArr.map((item, index) => {
+              return (
+                <div key={index} className={styles.box}>
+                  {item}
+                </div>
+              );
+            })}
+            {cloneSlides()}
+          </div>
+        </div>
+        <Slider {...{ handleClick, isAnimating }} next />
+      </div>
     </div>
   );
 };

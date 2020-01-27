@@ -7,9 +7,15 @@
   flex-direction: column;
 }
 
+.bottomContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .bigContainer {
   border: 1px solid red;
-  width: 460px;
+  width: 54vw;
+  max-width: 460px;
   height: 40rem;
   position: relative;
 
@@ -19,6 +25,7 @@
   justify-items: center;
   align-items: center;
 }
+
 .track {
   position: absolute;
   display: flex;

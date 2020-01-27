@@ -1,14 +1,18 @@
 import styles from "./Slider.module.scss";
 
-const Slider = ({ currentSlide, setClickGuard, isAnimating, handleClick }) => {
+const Slider = ({ next, previous, isAnimating, handleClick }) => {
   return (
     <div className={styles.sliderContainer}>
-      <div className={styles.previous} onClick={() => [!isAnimating && handleClick(-1)]}>
-        &#10094;
-      </div>
-      <div className={styles.next} onClick={() => [!isAnimating && handleClick(1)]}>
-        &#10095;
-      </div>
+      {previous && (
+        <div className={styles.previous} onClick={() => [!isAnimating && handleClick(-1)]}>
+          &#10094;
+        </div>
+      )}
+      {next && (
+        <div className={styles.next} onClick={() => [!isAnimating && handleClick(1)]}>
+          &#10095;
+        </div>
+      )}
     </div>
   );
 };
