@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Carousel.module.scss";
 import Slider from "./Slider";
+import Navbar from "./Navbar";
 import cx from "classnames";
 
 const Carousel = () => {
@@ -116,6 +117,7 @@ const Carousel = () => {
         </div>
         <Slider {...{ handleClick, isAnimating }} next />
       </div>
+      <Navbar {...{ currentSlide, slideArr }} />
     </div>
   );
 };

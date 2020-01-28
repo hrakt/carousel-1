@@ -1,0 +1,27 @@
+.mainContainer {
+  position: relative;
+  height: 20px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+}
+
+.tick {
+  position: relative;
+  width: 10px;
+  height: 4px;
+  background-color: yellowgreen;
+
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  &__selected {
+    background-color: rgb(78, 114, 4);
+  }
+
+  &:hover {
+    background-color: rgb(78, 114, 4);
+  }
+}
