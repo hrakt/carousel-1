@@ -49,7 +49,6 @@ const Carousel = () => {
 
   const handleClick = direction => {
     setIsAnimating(true);
-    cloneSlides();
     let newSlideNumber = currentSlide + direction;
     direction = direction;
     setShifting(true);
@@ -117,7 +116,7 @@ const Carousel = () => {
         </div>
         <Slider {...{ handleClick, isAnimating }} next />
       </div>
-      <Navbar {...{ currentSlide, slideArr }} />
+      <Navbar {...{ currentSlide, slideArr, setCurrentSlide, handleClick, setIsAnimating, setShifting }} />
     </div>
   );
 };
